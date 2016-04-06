@@ -15,10 +15,10 @@ public class ProductTest extends TestCase{
 	
 	public void testSettersAndGetters() throws ParseException {
 				
-		Product a = new Product();
-		a.setName("Portatil");
+		Product a = new Product((long) 4,"Portatil");
 		a.setDescription("Intel core i5, 13', 8GB");
 		
+		assertEquals((long) 4, (long) a.getId());
 		assertEquals("Portatil", a.getName());
 		assertEquals("Intel core i5, 13', 8GB", a.getDescription());
 	}
