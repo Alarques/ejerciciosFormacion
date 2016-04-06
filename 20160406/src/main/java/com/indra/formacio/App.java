@@ -38,16 +38,18 @@ public class App
         	emp.setName("Empleat "+emp.getId());
 
 //        	Creamos el cliente
-        	cust = new Customer();
-        	cust.setId(custCounter++);
-        	cust.setName("Cliente "+cust.getId());
+        	cust = new Customer(custCounter,"Cliente "+custCounter,"Apellido "+custCounter,emp);
+        	custCounter++;
+//        	cust.setId(custCounter++);
+//        	cust.setName("Cliente "+cust.getId());
 //        	seteamos el empleado
-        	cust.setEmployee(emp);
+//        	cust.setEmployee(emp);
         	
 //        	Creamos el producto
-        	prod = new Product();
-        	prod.setId(prodCounter++);
-        	prod.setName("Producto "+prod.getId());
+        	prod = new Product(prodCounter,"Producto "+prodCounter);
+        	prodCounter++;
+//        	prod.setId(prodCounter++);
+//        	prod.setName("Producto "+prod.getId());
         	
 //        	Asociamos producto y cliente
         	sal = new Sale(prod,cust);
