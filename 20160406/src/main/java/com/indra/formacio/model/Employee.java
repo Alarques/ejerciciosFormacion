@@ -1,6 +1,6 @@
 package com.indra.formacio.model;
 
-import java.text.ParseException;
+//import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
