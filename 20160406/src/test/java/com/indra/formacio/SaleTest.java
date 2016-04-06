@@ -3,7 +3,6 @@ package com.indra.formacio;
 import java.text.ParseException;
 
 import com.indra.formacio.model.Customer;
-import com.indra.formacio.model.Employee;
 import com.indra.formacio.model.Product;
 import com.indra.formacio.model.Sale;
 

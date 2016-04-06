@@ -11,6 +11,15 @@ public class Product {
 	protected String name;
 	protected String description;
 	
+	public Product(){
+		
+	}
+	
+	public Product(Long id, String name){
+		this.id = id;
+		this.name = name;
+	}
+	
 	public Long getId() {
 		return id;
 	}

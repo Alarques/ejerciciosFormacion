@@ -16,6 +16,17 @@ public class Customer {
 	protected Date percentDate;
 	protected Employee employee;
 	
+	public Customer(){
+		
+	}
+	
+	public Customer(Long id, String name, String surname, Employee employee){
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.employee = employee;
+	}
+	
 	public Long getId() {
 		return id;
 	}
