@@ -72,4 +72,73 @@ public class Employee {
 		this.percentDate = percentDate;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (birthday == null) {
+			if (other.getBirthday() != null)
+				return false;
+		} else if (!birthday.equals(other.getBirthday()))
+			return false;
+		if (id == null) {
+			if (other.getId() != null)
+				return false;
+		} else if (!id.equals(other.getId()))
+			return false;
+		if (name == null) {
+			if (other.getName() != null)
+				return false;
+		} else if (!name.equals(other.getName()))
+			return false;
+		if (percentCustomers == null) {
+			if (other.getPercentCustomers() != null)
+				return false;
+		} else if (!percentCustomers.equals(other.getPercentCustomers()))
+			return false;
+		if (percentDate == null) {
+			if (other.getPercentDate() != null)
+				return false;
+		} else if (!percentDate.equals(other.getPercentDate()))
+			return false;
+		if (sdf == null) {
+			if (other.sdf != null)
+				return false;
+		} else if (!sdf.equals(other.sdf))
+			return false;
+		if (surname == null) {
+			if (other.getSurname() != null)
+				return false;
+		} else if (!surname.equals(other.getSurname()))
+			return false;
+		return true;
+	}
+	
+//	@Override
+//	public boolean equals(Object obj) {
+//		Employee empAux = (Employee)obj;
+//		
+//		boolean equals = true;
+//		
+//		if(this.name != null)(
+//			if(!this.name.equals(empAux));
+//		)
+//		
+//		equals = equals && (this.name == null && empAux.getName() == null);
+//		equals = equals && (this.surname == null && empAux.getSurname() == null);
+//		
+//		return (
+//			this.id == empAux.getId()
+//			&& this.name.equals(empAux.getName())
+//			&& this.surname.equals(empAux.getName())
+//			&& this.percentCustomers.equals(empAux.getPercentCustomers())
+//			&& this.birthday.equals(empAux.getBirthday())
+//		);
+//	}
+	
 }

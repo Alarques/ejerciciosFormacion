@@ -36,4 +36,20 @@ public class EmployeeTest extends TestCase{
 		assertEquals(a.getPercentCustomers(),100f/4);
 		
 	}
+	
+	public void testEquals() throws ParseException{
+		Employee a = new Employee();
+		a.setName("Pepe");
+		a.setSurname("Viyuela");
+		a.setPercentDate(sdf.parse("06/04/2016"));
+		a.setPercentCustomers(2.4f);
+		
+		Employee a1 = new Employee();
+		a1.setName("Pepe");
+		a1.setSurname("Viyuela");
+		a1.setPercentDate(sdf.parse("06/04/2016"));
+		a1.setPercentCustomers(2.4f);
+		
+		assertEquals(a, a1);
+	}
 }

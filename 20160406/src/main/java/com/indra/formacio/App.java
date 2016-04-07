@@ -57,11 +57,17 @@ public class App
         	arraySale[i] = sal;
         }
 
-        for (int i = 0; i < arraySale.length; i++) {
-			sal = arraySale[i];
-			System.out.println("Nombre del producto: " + sal.getProduct().getName());
-			System.out.println("	Nombre del cliente: " + sal.getCustomer().getName() + " que lo gestiona el empleado " + sal.getCustomer().getEmployee().getName());
-        }
+//        for (int i = 0; i < arraySale.length; i++) {
+//			sal = arraySale[i];
+//			System.out.println("Nombre del producto: " + sal.getProduct().getName());
+//			System.out.println("	Nombre del cliente: " + sal.getCustomer().getName() + " que lo gestiona el empleado " + sal.getCustomer().getEmployee().getName());
+//        }
+        
+        for (Sale sale : arraySale) {
+        	System.out.println("Nombre del producto: " + sale.getProduct().getName());
+			System.out.println("	Nombre del cliente: " + sale.getCustomer().getName() + " que lo gestiona el empleado " + sale.getCustomer().getEmployee().getName());
+		}
+        
         
 //        for (Sale sale : arraySale) {
 //			System.out.println("Nombre del producto: " + sale.getProduct().getName());
