@@ -25,7 +25,7 @@ public class CustomerTest extends TestCase {
 		a.setPercentDate(sdf.parse("04/04/2016"));
 		a.setPercentProduct(2.4f);
 		
-		assertEquals((long) 4, (long) a.getId());
+		assertEquals(4l, (long) a.getId());
 		assertEquals("Federico", a.getName());
 		assertEquals("Larcia Gorca", a.getSurname());
 		assertEquals(emp.getName(),a.getEmployee().getName());

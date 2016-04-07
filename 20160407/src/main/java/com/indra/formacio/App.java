@@ -1,5 +1,7 @@
 package com.indra.formacio;
 
+import java.util.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -21,7 +23,7 @@ public class App
 	public static ArrayList<Sale> ventasEmpresa;
 	public static SimpleDateFormat	sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
-    public static void main( String[] args )
+    public static void main( String[] args ) throws ParseException
     {
         
     	initialize(new Integer [][] {{1,2},{3,4},{5,6,7,8}});
@@ -46,6 +48,15 @@ public class App
 				}
 			}
 		}
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     	
     	
     	
@@ -146,9 +157,10 @@ public class App
     	
     }
     
-    private static void porcentajeEmp(){
+    private static void porcentajeEmp() throws ParseException{
     	int numCli;
     	float percent;
+    	Date date = new Date();
     	for (Employee employee : empleadosEmpresa) {
     		numCli = 0;
         	for (Customer customer : clientesEmpresa) {
@@ -158,12 +170,15 @@ public class App
     		}
         	percent = (float) numCli*100/clientesEmpresa.size();
         	employee.setPercentCustomers(percent);
+        	String bb = sdf.format(date);
+			employee.setPercentDate(sdf.parse(bb));
 		}
     }
     
-    private static void porcentajeCli(){
+    private static void porcentajeCli() throws ParseException{
     	int numProd;
     	float percent;
+    	Date date = new Date();
     	for (Customer customer : clientesEmpresa) {
     		numProd = 0;
     		for (Sale sale : ventasEmpresa) {
@@ -173,6 +188,8 @@ public class App
 			}
 			percent = (float) numProd*100/ventasEmpresa.size();
 			customer.setPercentProduct(percent);
+			String bb = sdf.format(date);
+			customer.setPercentDate(sdf.parse(bb));
 		}
     }
     
