@@ -38,9 +38,9 @@ public class App
     	for (Employee employee : empleadosEmpresa) {
 			System.out.println("- "+employee.getName());
 			System.out.println("- Porcentaje de clientes: "+employee.getPercentCustomers()+"%");
+			System.out.println("- Clientes:");
 			for (Customer customer : clientesEmpresa) {
 				if(customer.getEmployee().getId() == employee.getId()){
-					System.out.println("- Clientes:");
 					System.out.println("\t- "+customer.getName()+", porcentaje de productos: "+customer.getPercentProduct()+"%");
 					for (Sale sale : ventasEmpresa) {
 						if(sale.getCustomer().getId() == customer.getId())System.out.println("\t\t- "+sale.getProduct().getName());
@@ -190,6 +190,7 @@ public class App
 			customer.setPercentProduct(percent);
 			String bb = sdf.format(date);
 			customer.setPercentDate(sdf.parse(bb));
+//			System.out.println(sdf.format(customer.getPercentDate()));
 		}
     }
     
