@@ -75,28 +75,28 @@ public class App
 //        	emp = new Employee();
 //        	
 //        	//Creamos el empleado con el nuevo constructor
-////        	emp = new Employee(empCounter,"Nom empleat "+empCounter, "Cognom empleat"+empCounter,"01/01/1970");
-////        	empCounter++;
+//        	emp = new Employee(empCounter,"Nom empleat "+empCounter, "Cognom empleat"+empCounter,"01/01/1970");
+//        	empCounter++;
 //
-////        	Opción básica
-////        	emp.setId(empCounter);
-////        	empCounter=empCounter+1;
+//        	Opción básica
+//        	emp.setId(empCounter);
+//        	empCounter=empCounter+1;
 //        	emp.setId(empCounter++);
 //        	emp.setName("Empleat "+emp.getId());
 //
-////        	Creamos el cliente
+//        	Creamos el cliente
 //        	cust = new Customer();
 //        	cust.setId(custCounter++);
 //        	cust.setName("Cliente "+cust.getId());
-////        	seteamos el empleado
+//        	seteamos el empleado
 //        	cust.setEmployee(emp);
 //        	
-////        	Creamos el producto
+//        	Creamos el producto
 //        	prod = new Product();
 //        	prod.setId(prodCounter++);
 //        	prod.setName("Producto "+prod.getId());
 //        	
-////        	Asociamos producto y cliente
+//        	Asociamos producto y cliente
 //        	sal = new Sale(prod,cust);
 //        	
 //        	arraySale[i] = sal;
