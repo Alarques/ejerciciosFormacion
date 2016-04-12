@@ -58,42 +58,11 @@ public class App
 //			System.out.println(customer.toString());
 //		}
     	
-    	Employee empleado = new Employee();
-    	Customer cliente = new Customer();
-    	Product producte = new Product();
-    	
 		initialize(new Integer [][] {{1,2},{3,4},{5,6,7,8}});		
 		porcentajeEmp();
 		porcentajeCli();
+		mostrarLlista();
 		
-		List resEmp = manager.createQuery(
-		        "FROM Employee e")
-		        .getResultList();
-		
-		for(int i = 0; i < resEmp.size(); i++){
-			empleado = (Employee) resEmp.get(i);
-			System.out.println("- "+empleado.getName());
-			System.out.println("- Porcentaje de clientes: "+empleado.getPercentCustomers()+"%");
-			System.out.println("- Clientes:");
-			List resCli = manager.createQuery(
-    				"SELECT customers "+
-    				"FROM Employee e where e.id = :eid")
-    				.setParameter("eid", empleado.getId())
-    				.getResultList();
-			for(int j = 0; j < resCli.size(); j++){
-				cliente = (Customer) resCli.get(j);
-				System.out.println("\t- "+cliente.getName()+", porcentaje de productos: "+cliente.getPercentProduct()+"%");
-				List resProd = manager.createQuery(
-	    				"SELECT product "+
-	    				"FROM Sale s where s.customer.id = :pid")
-	    				.setParameter("pid", cliente.getId())
-	    				.getResultList();
-				for(int x = 0; x < resProd.size(); x++){
-					producte = (Product) resProd.get(x);
-					System.out.println("\t\t- "+producte.getName());
-				}
-			}
-		}		
     }
     
     private static void initialize(Integer [][] empCliProd){
@@ -185,6 +154,41 @@ public class App
         	manager.getTransaction().begin();
         	manager.persist(cliente);
         	manager.getTransaction().commit();
+		}
+    }
+    
+    private static void mostrarLlista(){
+    	Employee empleado = new Employee();
+    	Customer cliente = new Customer();
+    	Product producte = new Product();
+    	
+		List resEmp = manager.createQuery(
+		        "FROM Employee e")
+		        .getResultList();
+		
+		for(int i = 0; i < resEmp.size(); i++){
+			empleado = (Employee) resEmp.get(i);
+			System.out.println("- "+empleado.getName());
+			System.out.println("- Porcentaje de clientes: "+empleado.getPercentCustomers()+"%");
+			System.out.println("- Clientes:");
+			List resCli = manager.createQuery(
+    				"SELECT customers "+
+    				"FROM Employee e where e.id = :eid")
+    				.setParameter("eid", empleado.getId())
+    				.getResultList();
+			for(int j = 0; j < resCli.size(); j++){
+				cliente = (Customer) resCli.get(j);
+				System.out.println("\t- "+cliente.getName()+", porcentaje de productos: "+cliente.getPercentProduct()+"%");
+				List resProd = manager.createQuery(
+	    				"SELECT product "+
+	    				"FROM Sale s where s.customer.id = :pid")
+	    				.setParameter("pid", cliente.getId())
+	    				.getResultList();
+				for(int x = 0; x < resProd.size(); x++){
+					producte = (Product) resProd.get(x);
+					System.out.println("\t\t- "+producte.getName());
+				}
+			}
 		}
     }
 }
