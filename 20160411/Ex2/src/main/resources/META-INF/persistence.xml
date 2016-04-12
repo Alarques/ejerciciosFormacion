@@ -5,6 +5,7 @@
 		<class>com.indra.formacio.model.Employee</class>
         <class>com.indra.formacio.model.Customer</class>
         <class>com.indra.formacio.model.Product</class>
+        <class>com.indra.formacio.model.Sale</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
 			<property name="javax.persistence.jdbc.url"    value="jdbc:derby:/simpleDb;create=true" />

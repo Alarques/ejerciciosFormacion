@@ -21,9 +21,10 @@ public class SaleTest extends TestCase {
 		EntityManager manager = Persistence.createEntityManagerFactory("com.indra.formacio").createEntityManager();
 		
 		manager.getTransaction().begin();
-		Customer c = new Customer();
+		Customer c;
 		List<Customer> cList = new ArrayList<Customer>();
 		for (int i = 0; i < NUMERO_SALES; i++){
+			c = new Customer();
 			c.setName("Nom client "+i);
 			c.setSurname("Cognom client "+i);
 			cList.add(c);
@@ -32,9 +33,10 @@ public class SaleTest extends TestCase {
 		manager.getTransaction().commit();
 		
 		manager.getTransaction().begin();
-		Product p = new Product();
+		Product p;
 		List<Product> pList = new ArrayList<Product>();
 		for (int i = 0; i < NUMERO_SALES; i++){
+			p = new Product();
 			p.setName("Producte "+i);
 			p.setDescription("Desc producte "+i);
 			pList.add(p);
@@ -43,8 +45,9 @@ public class SaleTest extends TestCase {
 		manager.getTransaction().commit();
 		
 		manager.getTransaction().begin();
-		Sale sal = new Sale();
+		Sale sal;
 		for (int i = 0; i < NUMERO_SALES; i++) {
+			sal = new Sale();
 			sal.setProduct(pList.get(i));
 			sal.setCustomer(cList.get(i));
 			manager.persist(sal);
@@ -53,7 +56,7 @@ public class SaleTest extends TestCase {
 		manager.getTransaction().commit();
 		List<Sale> res = new ArrayList<Sale>();
 		res = manager.createQuery(
-		        "FROM Sale s")
+		        "FROM Sale s order by s.id asc")
 		        .getResultList();
 		
 		int index = 0;

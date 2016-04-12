@@ -92,15 +92,12 @@ public class App
 			}
 		}
     	manager.getTransaction().commit();
-    	manager.refresh(e);
-    	manager.refresh(c);
-    	manager.refresh(p);
-    	manager.refresh(s);
+
     }
     
     private static void porcentajeEmp() throws ParseException{
     	float percent;
-    	Employee empleado = new Employee();
+    	Employee empleado;
     	
 		List resEmp = manager.createQuery(
 		        "FROM Employee e")
@@ -112,12 +109,13 @@ public class App
 		
     	for (int i = 0; i < resEmp.size(); i++) {
     		empleado = (Employee) resEmp.get(i);
-    		List resNumCli = manager.createQuery(
-    				"SELECT customers "+
-    				"FROM Employee e where e.id = :eid")
-    				.setParameter("eid", empleado.getId())
-    				.getResultList();
-        	percent = (float) resNumCli.size()*100/resCus.size();
+    		manager.refresh(empleado);
+//    		List resNumCli = manager.createQuery(
+//    				"SELECT customers "+
+//    				"FROM Employee e where e.id = :eid")
+//    				.setParameter("eid", empleado.getId())
+//    				.getResultList();
+        	percent = (float) empleado.getCustomers().size()*100/resCus.size();
         	empleado.setPercentCustomers(percent);
         	manager.getTransaction().begin();
         	manager.persist(empleado);
@@ -139,12 +137,13 @@ public class App
 		
     	for (int i = 0; i < resCli.size(); i++) {
     		cliente = (Customer) resCli.get(i);
-    		List resNumProd = manager.createQuery(
-    				"SELECT product "+
-    				"FROM Sale s where s.customer.id = :pid")
-    				.setParameter("pid", cliente.getId())
-    				.getResultList();
-        	percent = (float) resNumProd.size()*100/resProd.size();
+//    		List resNumProd = manager.createQuery(
+//    				"SELECT product "+
+//    				"FROM Sale s where s.customer.id = :pid")
+//    				.setParameter("pid", cliente.getId())
+//    				.getResultList();
+    		manager.refresh(cliente);
+        	percent = (float) cliente.getSales().size()*100/resProd.size();
         	cliente.setPercentProduct(percent);
         	manager.getTransaction().begin();
         	manager.persist(cliente);
@@ -153,9 +152,9 @@ public class App
     }
     
     private static void mostrarLlista(){
-    	Employee empleado = new Employee();
-    	Customer cliente = new Customer();
-    	Product producte = new Product();
+    	Employee empleado;
+    	Customer cliente;
+    	Product producte;
     	
 		List resEmp = manager.createQuery(
 		        "FROM Employee e")
@@ -166,11 +165,12 @@ public class App
 			System.out.println("- "+empleado.getName());
 			System.out.println("- Porcentaje de clientes: "+empleado.getPercentCustomers()+"%");
 			System.out.println("- Clientes:");
-			List resCli = manager.createQuery(
-    				"SELECT customers "+
-    				"FROM Employee e where e.id = :eid")
-    				.setParameter("eid", empleado.getId())
-    				.getResultList();
+//			List resCli = manager.createQuery(
+//    				"SELECT customers "+
+//    				"FROM Employee e where e.id = :eid")
+//    				.setParameter("eid", empleado.getId())
+//    				.getResultList();
+			List resCli = empleado.getCustomers();
 			for(int j = 0; j < resCli.size(); j++){
 				cliente = (Customer) resCli.get(j);
 				System.out.println("\t- "+cliente.getName()+", porcentaje de productos: "+cliente.getPercentProduct()+"%");

@@ -33,6 +33,13 @@ public class Customer {
 	@OneToMany(mappedBy="customer")
 	protected List<Sale> sales;
 	
+	public List<Sale> getSales() {
+		return sales;
+	}
+	public void setSales(List<Sale> sales) {
+		this.sales = sales;
+	}
+
 	//Este atributo que sigue está relacionado con el OneToMany de Employee. Si no definimos esto aquí
 	//en la otra clase va a dar error en intentar mapear el OneToMany
 	@ManyToOne
