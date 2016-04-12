@@ -70,22 +70,17 @@ public class App
     	Customer c = new Customer();
     	Sale s = new Sale();
     	Product p = new Product();
-    	
+    	manager.getTransaction().begin();
     	for (int i = 0; i < empCliProd.length; i++) {
-    		manager.getTransaction().begin();
 			e = new Employee();
 			e.setName("Empleado "+i);
 			manager.persist(e);
-			manager.getTransaction().commit();
 			for (int j = 0; j < empCliProd[i].length; j++) {
-				manager.getTransaction().begin();
 				c = new Customer();
 				c.setName("Cliente " +j+ " del empleado "+i);
 				c.setEmployee(e);
 				manager.persist(c);
-				manager.getTransaction().commit();
 				for (int k = 0; k < empCliProd[i][j]; k++) {
-					manager.getTransaction().begin();
 					p = new Product();
 					p.setName("Producto " +k + " del "+c.getName());
 					manager.persist(p);
@@ -93,10 +88,10 @@ public class App
 					s.setProduct(p);
 					s.setCustomer(c);
 					manager.persist(s);
-					manager.getTransaction().commit();
 				}
 			}
 		}
+    	manager.getTransaction().commit();
     	manager.refresh(e);
     	manager.refresh(c);
     	manager.refresh(p);
