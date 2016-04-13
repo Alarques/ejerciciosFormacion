@@ -27,16 +27,8 @@ public class SaleKey implements Serializable {
 		return product;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
 	public Customer getCustomer() {
 		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
 	}
 
 	@Override

@@ -23,8 +23,6 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 public class App 
 {
 	
-	public static EntityManager manager = Persistence.createEntityManagerFactory("com.indra.formacio").createEntityManager();
-	
     public static void main( String[] args )
     {
     	
@@ -58,14 +56,16 @@ public class App
 //			System.out.println(customer.toString());
 //		}
     	
-		initialize(new Integer [][] {{1,2},{3,4},{5,6,7,8}});		
-		porcentajeEmp();
-		porcentajeCli();
-		mostrarLlista();
+    	EntityManager manager = Persistence.createEntityManagerFactory("com.indra.formacio").createEntityManager();
+    	
+		initialize(manager, new Integer [][] {{1,2},{3,4},{5,6,7,8}});		
+		porcentajeEmp(manager);
+		porcentajeCli(manager);
+		mostrarLlista(manager);
 		
     }
     
-    private static void initialize(Integer [][] empCliProd){
+    private static void initialize(EntityManager manager, Integer [][] empCliProd){
     	Employee e = new Employee();
     	Customer c = new Customer();
     	Sale s = new Sale();
@@ -95,7 +95,7 @@ public class App
 
     }
     
-    private static void porcentajeEmp() throws ParseException{
+    private static void porcentajeEmp(EntityManager manager) throws ParseException{
     	float percent;
     	Employee empleado;
     	
@@ -123,7 +123,7 @@ public class App
 		}
     }
     
-    private static void porcentajeCli() throws ParseException{
+    private static void porcentajeCli(EntityManager manager) throws ParseException{
     	float percent;
     	Customer cliente = new Customer();
     	
@@ -151,7 +151,7 @@ public class App
 		}
     }
     
-    private static void mostrarLlista(){
+    private static void mostrarLlista(EntityManager manager){
     	Employee empleado;
     	Customer cliente;
     	Product producte;
