@@ -11,9 +11,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.indra.formacio.dao.CustomerRepository;
+import com.indra.formacio.dao.EmployeeRepository;
 import com.indra.formacio.dao.ProductRepository;
 import com.indra.formacio.dao.SaleRepository;
 import com.indra.formacio.model.Customer;
+import com.indra.formacio.model.Employee;
 import com.indra.formacio.model.Product;
 import com.indra.formacio.model.Sale;
 import com.indra.formacio.model.SaleKey;
@@ -32,20 +34,37 @@ public class SaleRepoTest extends TestCase {
 	ProductRepository pRepo;
 	@Autowired
 	SaleRepository sRepo;
+	@Autowired
+	EmployeeRepository eRepo;
 	
 	@Test
 	public void testCrud() throws ParseException {
 		Product p = new Product();
-		p.setId(1l);
+//		p.setId(1l);
 		p.setName("Test Product");
-//		pRepo.save(p);
-//		assertNotNull(p.getId());
+		
+		long numProducts = pRepo.count();
+		
+		pRepo.save(p);
+		assertNotNull(p.getId());
+		assertEquals(pRepo.count(), numProducts+1);
+		
+		Employee e = new Employee();
+		e.setName("Empleado Prueba");
+		e.setBirthday(sdf.parse("13/04/2016"));
+		eRepo.save(e);
+		
 		Customer c = new Customer();
-		c.setId(1l);
+//		c.setId(1l);
 		c.setName("Test");
 		c.setSurname("Test Surname");
-//		cRepo.save(c);
-//		assertNotNull(c.getId());
+		c.setEmployee(e);
+		
+		long numCustomers = cRepo.count();
+		
+		cRepo.save(c);
+		assertNotNull(c.getId());
+		assertEquals(cRepo.count(), numCustomers+1);
 		
 		Sale s = new Sale();
 		s.setKey(new SaleKey(p.getId(), c.getId()));
