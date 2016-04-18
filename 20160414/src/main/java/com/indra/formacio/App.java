@@ -7,6 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.indra.formacio.dao.CustomerRepository;
 import com.indra.formacio.dao.EmployeeRepository;
+import com.indra.formacio.dao.SaleRepository;
 import com.indra.formacio.model.Employee;
 
 /**
@@ -24,6 +25,7 @@ public class App
     	
     	empresa.setcRepo((CustomerRepository)context.getBean(CustomerRepository.class));
     	empresa.seteRepo((EmployeeRepository)context.getBean(EmployeeRepository.class));
+    	empresa.setsRepo((SaleRepository)context.getBean(SaleRepository.class));
     	
     	empresa.pintaClients();
     	empresa.pintaEmpleats();

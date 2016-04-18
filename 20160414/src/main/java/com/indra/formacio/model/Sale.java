@@ -3,16 +3,22 @@ package com.indra.formacio.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.Table;
 
-@Entity(name="PRODUCT_CUSTOMER")
+@Entity
+@Table(name="PRODUCT_CUSTOMER")
 @IdClass(SalePK.class)
 public class Sale {
+	
+	@EmbeddedId
+	protected SalePK key;
 	
 	@ManyToOne
 	@Id

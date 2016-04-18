@@ -36,6 +36,14 @@ public class Enterprise {
 		this.cRepo = cRepo;
 	}
 	
+	public SaleRepository getsRepo(){
+		return sRepo;
+	}
+	
+	public void setsRepo(SaleRepository sRepo){
+		this.sRepo = sRepo;
+	}
+	
 	public void pintaEmpleats(){
 		System.out.println(eRepo.count());
 	}
@@ -126,11 +134,7 @@ public class Enterprise {
 		List<Customer> allCli = (List<Customer>) cRepo.findAll();
 		
 		for (Customer customer : allCli) {
-			System.out.println(customer.getName());
-		}
-		
-		for (Customer customer : allCli) {
-			List<Sale> saleCust = sRepo.findByCustomer(customer.getId());
+			List<Sale> saleCust = sRepo.findByKey_Customer(customer);
 			double percent = (double) saleCust.size()*100/sRepo.count();
 			customer.setPercentProduct(percent);
 			customer.setPercentDate(new Date());
