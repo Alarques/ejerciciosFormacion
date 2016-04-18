@@ -9,5 +9,5 @@ import com.indra.formacio.model.Sale;
 import com.indra.formacio.model.SalePK;
 
 public interface SaleRepository extends CrudRepository<Sale, SalePK>{
-	List<Sale> findByCustomer(Customer cliente);
+	List<Sale> findByCustomer(Long cliente);
 }

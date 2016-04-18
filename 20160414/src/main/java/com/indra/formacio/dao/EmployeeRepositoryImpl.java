@@ -19,12 +19,6 @@ public class EmployeeRepositoryImpl implements EmployeeRepoMethods{
 	
 	@Autowired	//Spring Annotation
 	protected EntityManager entityManager;
-	@Autowired
-	protected CustomerRepository cRepo;
-	@Autowired
-	protected EmployeeRepository eRepo;
-	@Autowired
-	protected SaleRepository sRepo;
 	
 	@SuppressWarnings("unchecked")
 	public List<Employee> findByYearsWorking(Calendar start_date) {

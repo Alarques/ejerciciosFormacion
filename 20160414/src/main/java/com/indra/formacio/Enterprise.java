@@ -126,7 +126,11 @@ public class Enterprise {
 		List<Customer> allCli = (List<Customer>) cRepo.findAll();
 		
 		for (Customer customer : allCli) {
-			List<Sale> saleCust = sRepo.findByCustomer(customer);
+			System.out.println(customer.getName());
+		}
+		
+		for (Customer customer : allCli) {
+			List<Sale> saleCust = sRepo.findByCustomer(customer.getId());
 			double percent = (double) saleCust.size()*100/sRepo.count();
 			customer.setPercentProduct(percent);
 			customer.setPercentDate(new Date());
