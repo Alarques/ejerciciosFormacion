@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import org.apache.derby.tools.sysinfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,4 +71,25 @@ public class CustomerRepoTest extends TestCase {
 		List<Customer> res = cRepo.findByName("Client 1.1");
 		assertFalse(res.isEmpty());
 	}
+	@Test
+	public void testFindByEmployee(){
+		Employee e = eRepo.findOne(2L);
+		List<Customer> res = cRepo.findByEmployee(e);
+		assertFalse(res.isEmpty());
+		assertEquals(2, res.size());
+	}
+	@Test
+	public void testFindByEmployee_NameAndEmployee_Surname(){
+		List<Customer> res = cRepo.findByEmployee_NameAndEmployee_Surname("Treballador 4", null);
+		assertFalse(res.isEmpty());
+		assertEquals(1, res.size());
+	}
+	@Test
+	public void testFindBySurname(){
+		List<Customer> res = cRepo.findBySurname("Larcia");
+		assertFalse(res.isEmpty());
+		Customer c = res.get(0);
+		assertEquals("Client 1.1", c.getName());
+	}
+	
 }

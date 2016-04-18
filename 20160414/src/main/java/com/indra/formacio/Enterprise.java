@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.indra.formacio.dao.CustomerRepository;
 import com.indra.formacio.dao.EmployeeRepository;
+import com.indra.formacio.dao.ProductRepository;
 import com.indra.formacio.dao.SaleRepository;
 import com.indra.formacio.model.Customer;
 import com.indra.formacio.model.Employee;
+import com.indra.formacio.model.Product;
 import com.indra.formacio.model.Sale;
 
 public class Enterprise {
@@ -23,6 +25,8 @@ public class Enterprise {
 	EmployeeRepository eRepo;
 	@Autowired
 	SaleRepository sRepo;
+	@Autowired
+	ProductRepository pRepo;
 	
 	public void pintaClients(){
 		System.out.println(cRepo.count());
@@ -34,6 +38,14 @@ public class Enterprise {
 
 	public void setcRepo(CustomerRepository cRepo) {
 		this.cRepo = cRepo;
+	}
+	
+	public ProductRepository getpRepo(){
+		return pRepo;
+	}
+	
+	public void setpRepo(ProductRepository pRepo){
+		this.pRepo = pRepo;
 	}
 	
 	public SaleRepository getsRepo(){
@@ -141,11 +153,27 @@ public class Enterprise {
 			cRepo.save(customer);
 		}
 		
-		List<Customer> allCli1 = (List<Customer>) cRepo.findAll();
+//		List<Customer> allCli1 = (List<Customer>) cRepo.findAll();
+//		
+//		for (Customer customer : allCli1) {
+//			System.out.println(customer.getPercentProduct());
+//		}
+	}
+	
+	public void mejorComprador(){
+		List<Product> allProd = (List<Product>) pRepo.findAll();
 		
-		for (Customer customer : allCli1) {
-			System.out.println(customer.getPercentProduct());
+		
+		for (Product product : allProd) {
+			List<Sale> vent = sRepo.findByKey_ProductOrderByCantidadDesc(product);
+			if(vent.size()!=0){
+				System.out.println("----"+vent.get(0).getKey().getProduct().getName()+" "+vent.get(0).getKey().getCustomer().getName()+" Cantidad: "+vent.get(0).getCantidad());
+			}
+//			for (Sale sale : vent) {
+//				System.out.println(sale.getKey().getProduct().getName()+sale.getKey().getCustomer().getName()+" Cantidad: "+sale.getCantidad());
+//			}
 		}
+		
 	}
 	
 }
