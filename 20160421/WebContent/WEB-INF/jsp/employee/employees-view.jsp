@@ -20,6 +20,8 @@
 				<th><fmt:message key="form.first.name"/></th>
       			<th><fmt:message key="form.last.name"/></th>
       			<th><fmt:message key="form.birthday"/></th>
+      			<th><fmt:message key="form.edit"/></th>
+      			<th><fmt:message key="form.delete"/></th>
       		</tr>
       	</thead>
       	<tbody>
@@ -28,6 +30,8 @@
 	              <td>${emp.name}</td>
 	              <td>${emp.surname}</td>
 	              <td>${emp.birthday}</td>
+	              <td><a href="<c:url value='/edit-employee/${emp.id}.do' />" ><fmt:message key="form.edit"/></a></td>
+	              <td><a href="<c:url value='/delete-employee/${emp.id}.do' />" ><fmt:message key="form.delete"/></a></td>
 	          </tr>
 	      </c:forEach>
       	</tbody>

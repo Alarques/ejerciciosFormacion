@@ -20,6 +20,7 @@
 				<th><fmt:message key="form.first.name"/></th>
       			<th><fmt:message key="form.last.name"/></th>
       			<th><fmt:message key="customer.percent.product"/></th>
+      			<th><fmt:message key="form.delete"/></th>
       		</tr>
       	</thead>
       	<tbody>
@@ -28,6 +29,7 @@
 	              <td>${cust.name}</td>
 	              <td>${cust.surname}</td>
 	              <td>${cust.percentProduct} %</td>
+	              <td><a href="<c:url value='/delete-customer/${emp.id}.do' />" ><fmt:message key="form.delete"/></a></td>
 	          </tr>
 	      </c:forEach>
       	</tbody>

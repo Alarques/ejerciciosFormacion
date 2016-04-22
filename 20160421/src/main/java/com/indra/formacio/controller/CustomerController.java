@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.indra.formacio.dao.CustomerRepository;
@@ -95,5 +96,13 @@ public class CustomerController {
 		model.put("customerList",custList);
 		return "customer/customers-view";
 	}
+	
+	@RequestMapping("/delete-customer/{id}")
+    public String removeEmployee(@PathVariable("id") Long id){
+		
+		cRepo.delete(id);
+
+        return "redirect:/customers-view.do";
+    }
 	
 }

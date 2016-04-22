@@ -10,7 +10,9 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.indra.formacio.dao.EmployeeRepository;
@@ -45,7 +47,7 @@ public class EmployeeController {
 	        
 	        model.put("employee",emp);
 	        
-	        return "view-employee";
+	        return "employee/view-employee";
 	    } else {
 	    	model.put("message", "Todos los campos son obligatorios");
 	    	return "employee/new-employee";
@@ -101,5 +103,22 @@ public class EmployeeController {
 		model.put("employeeList",empList);
 		return "employee/search-employee";
 	}
+	
+	@RequestMapping("/edit-employee/{id}")
+    public String editEmployee(@PathVariable("id") Long id, Map<String, Object> model){
+		
+		Employee emp=eRepo.findOne(id);
+		model.put("employee",emp);
+		
+		return "employee/new-employee";
+    }
+	
+	@RequestMapping("/delete-employee/{id}")
+    public String removeEmployee(@PathVariable("id") Long id){
+		
+		eRepo.delete(id);
+
+        return "redirect:/employees-view.do";
+    }
 	
 }

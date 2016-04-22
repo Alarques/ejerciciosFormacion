@@ -18,7 +18,7 @@
       <table>
           <tr>
               <td><fmt:message key="form.first.name" />:</td>
-              <td><form:input path="name" /></td>
+              <td><form:input path="name" value="${employee.name}"/></td>
           </tr>
           <tr>
               <td><fmt:message key="form.last.name" />:</td>
