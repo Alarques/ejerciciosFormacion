@@ -84,6 +84,9 @@ public class SaleController {
 	@RequestMapping("/search-sale-view")
 	public String searchSaleView(Map<String, Object> model){
 		List<Customer> cusList = (List<Customer>) cRepo.findAll();
+		Customer cusAll = new Customer();
+		cusAll.setName("All Customers");
+		cusList.add(cusAll);
 		model.put("customerList", cusList);
 		Sale sl = new Sale();
 		model.put("saleSearch",sl);
@@ -93,16 +96,30 @@ public class SaleController {
 	@RequestMapping("/search-sale")
 	public String searchEmployee(@ModelAttribute("saleSearch") Sale sal,
 			Map<String, Object> model){
-		List<Customer> cusList = (List<Customer>) cRepo.findAll();
-		model.put("customerList", cusList);
-		
-		List<Sale> saleList;
-		
-		Customer cust = cRepo.findOne(sal.getKey().getCustomer().getId());
-		
-		saleList= sRepo.findByKey_Customer(cust);
+		if(sal.getKey().getCustomer().getId()==null){
+			List<Customer> cusList = (List<Customer>) cRepo.findAll();
+			Customer cusAll = new Customer();
+			cusAll.setName("All Customers");
+			cusList.add(cusAll);
+			model.put("customerList", cusList);
 			
-		model.put("saleList",saleList);
-		return "sale/search-sale";
+			List<Sale> saleList = (List<Sale>) sRepo.findAll();
+			model.put("saleList",saleList);
+			return "sale/search-sale";
+		}
+		
+		else{
+			List<Customer> cusList = (List<Customer>) cRepo.findAll();
+			model.put("customerList", cusList);
+			
+			List<Sale> saleList;
+			
+			Customer cust = cRepo.findOne(sal.getKey().getCustomer().getId());
+			
+			saleList= sRepo.findByKey_Customer(cust);
+				
+			model.put("saleList",saleList);
+			return "sale/search-sale";
+		}
 	}
 }
